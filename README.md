@@ -3,7 +3,8 @@
 Optymo' Clock est un projet visant à réunir un maximum de pages d'horaires en temps réel fournies par Optymo\
 Bien évidemment, Optymo' Clock est uniquement un moyen d'accès aux pages d'horaires, qui sont faites par Optymo\
 Donc je ne serai responable de tout coutenu qui y apparait (même si, a part vous votre bus partir sous votre nez, y'a pas de gros risque, mais quand même...)\
-Optymo' Clock est EN AUCUN CAS afflié à Optymo.\
+Optymo' Clock est EN AUCUN CAS afflié à Optymo.
+(Pourquoi Optymo' Clock ? C'est un jeu de mot avec Optymo et O' Clock, qui signifie une heure pile en anglais)
 
 
 # NEWS
@@ -16,4 +17,7 @@ si il va vers Valdoie, pour les arrêts ou il y a plein de bus qui y passent (co
 "Gar03" et "Gar04" pour la ligne 2, "Gar05" et "Gar06" pour la ligne 3.\
 Si vous souhaitez contribuer (aux arrêts), envoyez-moi une demande sur Discord (@naxomegaenpersonne] et donnez moi le lien et je l'ajouterai à mon document\
 Voila, c'est tout pour cette fois-ci, bon journée/soirée !
+EDIT 1h plus tard : Le site est en ligne, non-fonctionnel mais en ligne quand même !\
+Si vous souhaitez contribuer côté code, faites un pull request\
+et je verrais si je l'approuverais ou pas...
 
