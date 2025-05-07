@@ -35,7 +35,7 @@ body {
 .content {
     margin-top: 20px;
     border-radius: 25px;
-    background-color: #d3414e; /* Existing background color */
+    background-color: #e79129; /* Warm amber for Line 2 */
     padding: 20px;
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack headings vertically */
@@ -99,14 +99,14 @@ body {
     text-align: center; /* Center the text inside the link */
     padding: 10px 15px; /* Add some padding for better spacing */
     border-radius: 10px; /* Optional: Add rounded corners */
-    background-color: var(--line-color, #d3414e); /* Use the line color or fallback */
+    background-color: var(--line-color, #e79129); /* Use the line color or fallback */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
     font-size: 20px;
     min-width: 150px; /* Ensure links have a consistent width */
 }
 
 .line-link:hover {
-    background-color: #b0303e; /* Slightly darker color on hover */
+    background-color: #d17a1f; /* Slightly darker shade of amber for hover */
     transform: scale(1.05); /* Slightly enlarge the link on hover */
 }
 
