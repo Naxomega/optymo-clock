@@ -45,9 +45,11 @@ body {
 }
 
 .link-container {
-    display: flex; /* Align links horizontally */
-    justify-content: center; /* Center the links */
-    gap: 20px; /* Add space between the links */
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow links to wrap to the next line on smaller screens */
+    justify-content: center; /* Center the links horizontally */
+    gap: 15px; /* Add space between the links */
+    padding: 10px; /* Add padding to prevent links from touching the edges */
 }
 
 .top-bar a::after {
@@ -101,8 +103,10 @@ body {
     border-radius: 10px; /* Optional: Add rounded corners */
     background-color: var(--line-color, #e79129); /* Use the line color or fallback */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
-    font-size: 20px;
-    min-width: 150px; /* Ensure links have a consistent width */
+    font-size: 18px; /* Adjust font size for readability on smaller screens */
+    min-width: 120px; /* Ensure links have a consistent minimum width */
+    max-width: 150px; /* Prevent links from becoming too wide */
+    box-sizing: border-box; /* Include padding in width calculations */
 }
 
 .line-link:hover {
