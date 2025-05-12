@@ -100,7 +100,10 @@ a,
 }
 
 .line-link {
-    display: inline-block; /* Ensure the link behaves like a block for better alignment */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack text vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
     color: white; /* White text color */
     font-weight: bold; /* Bold text */
     text-decoration: none; /* Remove underline */
@@ -115,8 +118,6 @@ a,
     box-sizing: border-box; /* Include padding in width calculations */
     outline: none; /* Remove the default blue outline */
 }
-
-
 
 .line-link:hover {
     background-color: #b0303e; /* Slightly darker shade of rose for hover */

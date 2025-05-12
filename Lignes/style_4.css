@@ -35,13 +35,14 @@ body {
 .content {
     margin-top: 20px;
     border-radius: 25px;
-    background-color: #e79129; /* Warm amber for Line 2 */
+    background-color: #570091; /* Warm amber for Line 2 */
     padding: 20px;
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack headings vertically */
     align-items: center; /* Center all content horizontally */
     gap: 20px; /* Add space between elements */
     text-align: center; /* Center text inside the container */
+    color: lightgray;
 }
 
 .link-container {
@@ -104,7 +105,7 @@ body {
     text-align: center; /* Center the text inside the link */
     padding: 10px 15px; /* Add some padding for better spacing */
     border-radius: 10px; /* Optional: Add rounded corners */
-    background-color: var(--line-color, #e79129); /* Use the line color or fallback */
+    background-color: var(--line-color, #570091); /* Use the line color or fallback */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
     font-size: 18px; /* Adjust font size for readability on smaller screens */
     min-width: 120px; /* Ensure links have a consistent minimum width */
@@ -121,13 +122,13 @@ a,
 }
 
 .line-link:hover {
-    background-color: #d17a1f; /* Slightly darker shade of amber for hover */
+    background-color: #6b0cae; /* Slightly lighter shade of purple for hover */
     transform: scale(1.05); /* Slightly enlarge the link on hover */
 }
 
 .line-link span {
-    display: inline-block; /* Ensure each word is inline */
-    margin: 0 5px; /* Add spacing between words */
+    display: block; /* Ensure each line of text is treated as a block */
+    margin: 0; /* Remove any default margins */
 }
 
 .line-link span.notbold {
