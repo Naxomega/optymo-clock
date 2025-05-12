@@ -92,6 +92,7 @@ body {
     transition: transform 0.3s ease;
 }
 
+a,
 .line-link,
 .line-dot {
     -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */

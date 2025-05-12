@@ -110,7 +110,12 @@ body {
     outline: none; /* Remove the default blue outline */
 }
 
-
+a,
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */
+    outline: none; /* Remove the default focus outline */
+}
 
 .line-link:hover {
     background-color: #d17a1f; /* Slightly darker shade of amber for hover */
