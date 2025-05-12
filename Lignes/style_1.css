@@ -110,7 +110,11 @@ body {
     outline: none; /* Remove the default blue outline */
 }
 
-
+.line-link:focus {
+    outline: 2px solid #ffcc00; /* Add a custom focus outline */
+    outline-offset: 4px; /* Add space between the outline and the link */
+    background-color: #b0303e; /* Optional: Change background color on focus */
+}
 
 .line-link:hover {
     background-color: #b0303e; /* Slightly darker shade of rose for hover */
