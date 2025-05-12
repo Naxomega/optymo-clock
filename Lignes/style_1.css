@@ -92,6 +92,11 @@ body {
     transition: transform 0.3s ease;
 }
 
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */
+    outline: none; /* Remove the default focus outline */
+}
 
 .line-link {
     display: inline-block; /* Ensure the link behaves like a block for better alignment */
