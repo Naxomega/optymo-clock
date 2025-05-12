@@ -4,7 +4,7 @@ Optymo' Clock est un projet visant à réunir un maximum de pages d'horaires en 
 Bien évidemment, Optymo' Clock est uniquement un moyen d'accès aux pages d'horaires, qui sont faites par Optymo\
 Donc je ne serai responable de tout coutenu qui y apparait (même si, a part voir votre bus partir sous votre nez, y'a pas de gros risque, mais quand même...)\
 Optymo' Clock est EN AUCUN CAS afflié à Optymo.\
-(Pourquoi Optymo' Clock ? C'est un jeu de mot avec Optymo et O' Clock, qui signifie une heure pile en anglais)\
+(Pourquoi Optymo' Clock ? C'est un jeu de mot avec Optymo et O' Clock, qui signifie une heure pile en anglais)
 
 
 # NEWS
