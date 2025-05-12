@@ -29,6 +29,7 @@ body {
     font-weight: bold;
     position: relative; /* Required for the ::after pseudo-element */
     transition: color 0.3s ease; /* Smooth color transition */
+    outline: none; /* Remove the default blue outline */
 }
 
 .top-bar a::after {
@@ -69,6 +70,7 @@ body {
     text-decoration: none;
     font-size: 25px;
     transition: transform 0.3s ease;
+    outline: none; /* Remove the default blue outline */
 }
 
 .line-dot:hover {
