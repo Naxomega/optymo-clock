@@ -95,7 +95,7 @@ body {
 
 
 .line-link {
-    display: flex; /* Use flexbox for layout */
+    display: inline-block; /* Use flexbox for layout */
     flex-direction: column; /* Stack text vertically */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
@@ -127,10 +127,14 @@ a,
 }
 
 .line-link span {
-    display: block; /* Ensure each line of text is treated as a block */
+    display: inline-block; /* Ensure each line of text is treated as a block */
     margin: 0; /* Remove any default margins */
 }
 
 .line-link span.notbold {
+    font-weight: normal; /* Make the text not bold */
+}
+.line-link span.andelnans {
+    font-size: 15px;
     font-weight: normal; /* Make the text not bold */
 }

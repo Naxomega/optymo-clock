@@ -94,7 +94,7 @@ body {
 
 
 .line-link {
-    display: flex; /* Use flexbox for layout */
+    display: inline-block; /* Use flexbox for layout */
     flex-direction: column; /* Stack text vertically */
     justify-content: center; /* Center content vertically */
     align-items: center; /* Center content horizontally */
