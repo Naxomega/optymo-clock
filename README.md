@@ -8,6 +8,7 @@ Optymo' Clock est EN AUCUN CAS afflié à Optymo.\
 
 
 # NEWS
+(18 Juin 25) Bon, je dois avouer que j'ai pas trop touché à ce projet depuis un bout de temps, mais je vous promet que je vais continuer le développement d'ici une à deux semaines\
 (12 Mai 25) C'est bon, toutes les pages de toutes les lignes ont été crées (1, 2, 3, 4, 5 et 8), donc je vais pouvoir attaquer les pages des directions (1 -> Résidences, 1 -> Valdoie...) et y inclure les arrêts.\
 Voici ma roadmap pour le restant de ce qu'il y a à faire : Pages dédiés aux Lignes (Ordre : 1, 2, 5, 3, 4), Page tous arrêts ainsi que les sous divisions par lignes, la page contribuer et la ligne 8 (Je la fais passer dernière car je n'ai pas l'impression que beaucoup de gens l'utilisent, mais je me trompe peut être...)\
 (7 Mai 25) J'ai ajouté des pages pour les lignes 1 et 2, ainsi que leur liens et thèmes respectifs, en l'état, leur liens mènent à une page vide,
