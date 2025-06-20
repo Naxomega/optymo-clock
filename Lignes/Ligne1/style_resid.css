@@ -1,0 +1,141 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    align-items: center;
+    text-align: center;
+}
+
+.top-bar {
+    background-color: #333;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 60px;
+}
+
+.top-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.top-bar li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative; /* Required for the ::after pseudo-element */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Center the content inside the .content div */
+.content {
+    margin-top: 20px;
+    border-radius: 25px;
+    background-color: #d3414e; /* Warm rose for Line 1 */
+    padding: 20px;
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack headings vertically */
+    align-items: center; /* Center all content horizontally */
+    gap: 20px; /* Add space between elements */
+    text-align: center; /* Center text inside the container */
+}
+
+.link-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+}
+
+.top-bar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Position the underline just below the text */
+    width: 0;
+    height: 2px;
+    background-color: #ffcc00; /* Underline color */
+    transition: width 0.3s ease; /* Smooth underline animation */
+}
+
+.top-bar a:hover {
+    color: #ffcc00; /* Change text color on hover */
+}
+
+.top-bar a:hover::after {
+    width: 100%; /* Expand the underline to full width */
+}
+
+.line-dots {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.line-dot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+a,
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */
+    outline: none; /* Remove the default focus outline */
+}
+
+.line-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;           /* Largeur fixe pour tous les boutons */
+    height: 48px;           /* Hauteur fixe pour tous les boutons */
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #d3414e);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    /* Pour éviter que le texte déborde */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.line-link:hover {
+    background-color: #b0303e;
+    transform: scale(1.05);
+}
+
+.line-link span {
+    display: inline-block; /* Ensure each word is inline */
+    margin: 0 5px; /* Add spacing between words */
+}
+
+.line-link span.notbold {
+    font-weight: normal; /* Make the text not bold */
+}
+
+.notbold {
+    font-weight: 400;
+}
