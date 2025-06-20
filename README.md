@@ -8,6 +8,8 @@ Optymo' Clock est EN AUCUN CAS afflié à Optymo.\
 
 
 # NEWS
+(20 Juin 25) Chose promise, chose dûe, a l'heure actuelle, les deux pages de la ligne 1 sont fonctionelles, mais j'ai rencontré un problême : je n'ai pas réussi à trouver l'identifiant de certains arrêts,  mais cela n'empêche pas leur apparition sur le site, car j'ai utilisé l'iframe qui est intégré sur la carte "en temps réelle" d'Optymo, mais le problême, c'est que les bus des 2 sens apparaissent, c'est pas trop dérangeant selon moi, mais j'aimerais quand même avoir les vrais liens d'arrêts. Aussi, j'ai trouvé des arrêts qui n'existent juste pas (même sur la carte en temps réelle, les  iframes donnent une page d'erreur). J'ai répertorié tout ca dans un fichier Word qui est dans Optymo-Clock\Autres\Arrets.docx, tout ce qui est surligné en jaune est un arrêt oû il me manque son lien, ou un arrêt qui n'existe pas. \
+J'ai aussi ajouté une page Contribuer et une page à propos.\
 (18 Juin 25) Bon, je dois avouer que j'ai pas trop touché à ce projet depuis un bout de temps, mais je vous promet que je vais continuer le développement d'ici une à deux semaines\
 (12 Mai 25) C'est bon, toutes les pages de toutes les lignes ont été crées (1, 2, 3, 4, 5 et 8), donc je vais pouvoir attaquer les pages des directions (1 -> Résidences, 1 -> Valdoie...) et y inclure les arrêts.\
 Voici ma roadmap pour le restant de ce qu'il y a à faire : Pages dédiés aux Lignes (Ordre : 1, 2, 5, 3, 4), Page tous arrêts ainsi que les sous divisions par lignes, la page contribuer et la ligne 8 (Je la fais passer dernière car je n'ai pas l'impression que beaucoup de gens l'utilisent, mais je me trompe peut être...)\
