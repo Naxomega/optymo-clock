@@ -48,7 +48,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     padding: 10px;
 }
 
@@ -103,8 +103,10 @@ a,
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 170px;           /* Largeur fixe pour tous les boutons */
-    height: 48px;           /* Hauteur fixe pour tous les boutons */
+    flex: 1 1 45%;      /* Prend 45% de la largeur du conteneur, s'adapte */
+    max-width: 200px;   /* Largeur max pour éviter des boutons trop larges */
+    min-width: 120px;   /* Largeur min pour éviter des boutons trop petits */
+    height: 48px;
     color: white;
     font-weight: bold;
     text-decoration: none;
@@ -116,7 +118,6 @@ a,
     box-sizing: border-box;
     outline: none;
     cursor: pointer;
-    /* Pour éviter que le texte déborde */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -138,4 +139,11 @@ a,
 
 .notbold {
     font-weight: 400;
+}
+
+@media (max-width: 600px) {
+    .line-link {
+        flex: 1 1 48%;   /* 2 boutons par ligne sur mobile */
+        max-width: 100%;
+    }
 }
