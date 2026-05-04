@@ -155,7 +155,7 @@ a,
 }
 
 #scaled-frame {
-  width: 750;
+  width: 73%;
   height: 500;
   transform: scale(1.30);
   border: 2px solid rgba(255, 255, 255, 0.2);
