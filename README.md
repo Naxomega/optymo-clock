@@ -1,5 +1,4 @@
 # Optymo' Clock (Work In Progress)
-(This Repo and its content are in French)\
 Optymo' Clock est un projet visant à réunir un maximum de pages d'horaires en temps réel fournies par Optymo\
 Bien évidemment, Optymo' Clock est uniquement un moyen d'accès aux pages d'horaires, qui sont faites par Optymo\
 Donc je ne serai responable de tout coutenu qui y apparait (même si, a part voir votre bus partir sous votre nez, y'a pas de gros risque, mais quand même...)\
@@ -8,6 +7,10 @@ Optymo' Clock est EN AUCUN CAS afflié à Optymo.\
 
 
 # NEWS
+(4 Mai 2025) Wouah ca fait longtemps que je ne suis pas passé par ici, mais j'ai plein de nouvelles idées afin de rendre ce site encore meilleur ! Cepandant, j'année prochaine, je vais (je l'espère) partir dans une autre ville pour mes études, ce qui me contraindra de stopper le projet. (Cependant je vais voir, une fois installé dans la ville de mon choix, si il est possible et utile de faire un site comme celui-là) En attendant, je vais essayer de l'améliorer en utilisant des connaisances toutes fraîches (PHP notamment) et avec de nouvelles idées que voici : 
+- Une page par arrêt : c'est la que PHP me sera utile, car grâce à lui je n'aurais pas besoin de faire une page par arrêt mais une seule page contenant tout les arrêts (même si, je vais tester lequel est le plus pratique pour moi)
+- Informations supplémentaires : dans ces nouvelles pages, je compte inclure un iframe (une sorte de fenêtre) vers le site d'Optymo, et donner des informations supplémentaires sur la page (de mon côté) tel que : les correspondances (y compris les correspondances indirectes comme les arrêts Fg de Lyon et Dubail, qui sont à coté mais en aucun cas réferencés en tant que corrrespondances du côté d'Optymo), les lieux notables à proximité (par exemple le lycée Follerau aux arrêts Liberté Madrid et Follerau, la gare aux arrêts Gare (hé oui vous ne l'avez pas vue venir celle la :D ) etc...)\
+
 (20 Juin 25) Chose promise, chose dûe, a l'heure actuelle, les deux pages de la ligne 1 sont fonctionelles, mais j'ai rencontré un problême : je n'ai pas réussi à trouver l'identifiant de certains arrêts,  mais cela n'empêche pas leur apparition sur le site, car j'ai utilisé l'iframe qui est intégré sur la carte "en temps réelle" d'Optymo, mais le problême, c'est que les bus des 2 sens apparaissent, c'est pas trop dérangeant selon moi, mais j'aimerais quand même avoir les vrais liens d'arrêts. Aussi, j'ai trouvé des arrêts qui n'existent juste pas (même sur la carte en temps réelle, les  iframes donnent une page d'erreur). J'ai répertorié tout ca dans un fichier Word qui est dans Optymo-Clock\Autres\Arrets.docx, tout ce qui est surligné en jaune est un arrêt oû il me manque son lien, ou un arrêt qui n'existe pas. \
 J'ai aussi ajouté une page Contribuer et une page à propos.\
 (18 Juin 25) Bon, je dois avouer que j'ai pas trop touché à ce projet depuis un bout de temps, mais je vous promet que je vais continuer le développement d'ici une à deux semaines\
