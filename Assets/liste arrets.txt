@@ -1,0 +1,14 @@
+Cra = Techn'hom Cravanche | Prochains passages | Optymo
+Lib = Liberté Madrid | Prochains passages | Optymo
+Utb = Techn'hom 1/UTBM | Prochains passages | Optymo
+Rub = Rubans | Prochains passages | Optymo
+Jac = Jacquot | Prochains passages | Optymo
+Zac = Laurencie | Prochains passages | Optymo
+Mec = Méchelle | Prochains passages | Optymo
+Bic = Bichat | Prochains passages | Optymo
+Lyc = Signoret | Prochains passages | Optymo
+And = Andelnans Prés | Prochains passages | Optymo
+Cle = Clémenceau | Prochains passages | Optymo
+RMe = Rue des Alisiers | Prochains passages | Optymo
+Sch = Schuman | Prochains passages | Optymo
+Usi = Techn'hom 3 | Prochains passages | Optymo

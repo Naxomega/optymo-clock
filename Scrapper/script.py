@@ -1,196 +1,496 @@
-import discord
-from discord.ext import commands
-import requests  # For downloading web pages and PDFs
-from bs4 import BeautifulSoup  # For parsing HTML
-from urllib.parse import urljoin  # For fixing relative URLs
-import os  # For managing the downloaded PDF file
-from datetime import date
-# Ce script est basé sur mon travail sur GrailleBot,
-# son but est de bruteforce toutes les combinaisons possibles
-# afin de récupérer les urls valides
-
-# ============================
-# STEP 0: CONFIGURATION
-# ============================
-jour = date.today()
-formatted_date = jour.strftime("%d-%m-%Y")
-# This is the main URL of your school's website
+from urllib.request import urlopen  # For fixing relative URLs
 
 
-# We will search for the news item containing this keyword
-SEARCH_KEYWORD = "Menu"  #
-
-# This is the name the PDF will be saved as locally
-FILENAME = f"Menu_Cantine_{formatted_date}.pdf"
-
-# !!! PASTE YOUR BOT'S SECRET TOKEN HERE !!!
-
-
-# --- Confirmed CSS Selectors ---
-
-# Selects the container for each news item on the main page
-NEWS_ITEM_CONTAINER = "article.fo-card"
-
-# Selects the title link inside the news item
-MENU_PAGE_LINK_SELECTOR = "h3.fo-card__title a"
-
-# Selects any link on the sub-page that ends with '.pdf'
-PDF_LINK_SELECTOR = "a"
+BASE_URL = "https://siv.optymo.fr/passage.php?ar="
+STOP_ID_1 = "a"
+STOP_ID_2 = "a"
+STOP_ID_3 = "a"
+FINAL_URL = None
+FINISH = False
+print("Scrapper Lancé !")
 
 
-# ============================
-# STEP 1: WEB SCRAPING & DOWNLOAD LOGIC
-# ============================
-
-def get_menu_pdf_path():
-    """
-    Finds the menu link, navigates to the page, downloads the PDF,
-    and returns the local file path.
-    """
-    try:
-        # --- PART 1: Find the Full Menu Page Link ---
-        print(f"1. Fetching main page: {MAIN_URL}")
-        # Set a timeout to prevent the bot from hanging indefinitely
-        main_response = requests.get(MAIN_URL, timeout=10)
-        # Raise an error if the request failed (e.g., 404, 500)
-        main_response.raise_for_status()
-        
-        main_soup = BeautifulSoup(main_response.content, 'html.parser')
-
-        # Find all news items
-        all_news_items = main_soup.select(NEWS_ITEM_CONTAINER)
-        menu_page_url = None
-
-        # Loop through all news items to find the one with the keyword
-        for item in all_news_items:
-            # Find the link element within this item
-            link_element = item.select_one(MENU_PAGE_LINK_SELECTOR)
-            if link_element and SEARCH_KEYWORD in link_element.get_text():
-                # We found it! Get the URL from the 'href' attribute
-                relative_link = link_element.get('href')
-                # Use urljoin to build a full, absolute URL
-                menu_page_url = urljoin(MAIN_URL, relative_link)
-                break  # Stop searching once we find the first match
-
-        if not menu_page_url:
-            return None, f"⚠️ Aucun élément contenant '{SEARCH_KEYWORD}' trouvé sur la page principale."
-
-        print(f"2. Found menu page link: {menu_page_url}")
-
-       # --- PART 2: Navigate to Menu Page and Find the File Link ---
-        print("3. Fetching menu page to find file link...")
-        menu_response = requests.get(menu_page_url, timeout=10)
-        menu_response.raise_for_status()
-        
-        menu_soup = BeautifulSoup(menu_response.content, 'html.parser')
-
-        pdf_url = None
-        
-        # AGGRESSIVE SEARCH: Search every single <a> tag on the page
-        for element in menu_soup.find_all(PDF_LINK_SELECTOR): 
-            # Check the element's 'href' attribute
-            href = element.get('href')
-            
-            # Look for the unique file-serving script in the link
-            if href and 'lectureFichiergw.do' in href:
-                relative_pdf_link = href
-                # Combine the relative link with the base URL
-                pdf_url = urljoin(menu_page_url, relative_pdf_link)
-                break # Found it, stop searching
-
-        if not pdf_url:
-            return None, "❌ Impossible de trouver de lien contenant 'lectureFichiergw.do' sur la page du menu."
-
-        # --- Download the PDF content ---
-        print(f"4. Found PDF URL: {pdf_url}")
-        print("5. Downloading PDF file...")
-        
-        # We need the full URL to download the file served by the script
-        pdf_response = requests.get(pdf_url, stream=True, timeout=10)
-        pdf_response.raise_for_status()
-
-        # Save the PDF content locally
-        with open(FILENAME, 'wb') as f:
-            for chunk in pdf_response.iter_content(chunk_size=8192):
-                f.write(chunk)
-        
-        # Return the local file path and a success message
-        return os.path.abspath(FILENAME), "✅ Menu téléchargé avec succès !"
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error during web request: {e}")
-        return None, f"❌ Une erreur réseau est survenue : {e}"
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
-        return None, f"❌ Une erreur inattendue est survenue : {e}"
-
-# ============================
-# STEP 2: DISCORD BOT INTEGRATION
-# ============================
-
-# Define intents: This tells Discord what your bot needs permission to "see"
-intents = discord.Intents.default()
-intents.message_content = True  # Required to read messages and detect commands
-
-# Initialize the bot with a command prefix (e.g., !menu)
-bot = commands.Bot(command_prefix='!', intents=intents)
-
-@bot.event
-async def on_ready():
-    """Event handler: runs when the bot successfully connects to Discord."""
-    print(f'🤖 Bot is online and logged in as {bot.user}')
-    print('------')
-
-@bot.command(name='menu')
-async def send_menu(ctx):
-    """Command: !menu - Downloads and posts the canteen menu PDF."""
-    
-    # Send an immediate status update so the user knows the bot is working
-    status_msg = await ctx.send("⌛ Recherche du dernier menu de la cantine...")
-
-    # Run the scraping and download function
-    # This part can take a few seconds
-    file_path, status_message = get_menu_pdf_path()
-    
-    # Check if the download was successful
-    if file_path:
-        try:
-            # Create a discord.File object from the downloaded file
-            jour = date.today()
-            formatted_date = jour.strftime("%d/%m/%Y")
-            menu_file = discord.File(file_path, filename=FILENAME)
-
-            # Send the file along with the success message
-            await ctx.send(
-                content=f"**{status_message}** Voici le menu :",
-                file=menu_file
-            )
-            # Delete the "Searching..." message
-            await status_msg.delete()
-
-        except Exception as e:
-            # If sending the file fails
-            print(f"Error sending file to Discord: {e}")
-            await status_msg.edit(content=f"❌ Erreur lors de l'envoi du fichier sur Discord : {e}")
-        finally:
-            # Clean up: Delete the local PDF file after sending it
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                print(f"6. Cleaned up local file: {file_path}")
-            
+def request():
+    global FINAL_URL
+    page = urlopen(FINAL_URL)
+    html = page.read().decode("utf-8")
+    start_index = html.find("<title>") + len("<title>")
+    end_index = html.find("</title>")
+    title = html[start_index:end_index]
+    return title
+while True:
+    FINAL_URL = BASE_URL + STOP_ID_1 + STOP_ID_2 + STOP_ID_3 + "01"
+    head = request()
+    if head[0:8] == "indéfini":
+        pass
     else:
-        # If file_path is None, it means the download failed.
-        # Edit the status message to show the error.
-        await status_msg.edit(content=status_message)
+        print(f"{STOP_ID_1}{STOP_ID_2}{STOP_ID_3} = {head}")
 
-# ============================
-# STEP 3: RUN THE BOT
-# ============================
+    if STOP_ID_1 == "a":
+        STOP_ID_1 = "b"
+        continue
+    elif STOP_ID_1 == "b":
+        STOP_ID_1 = "c"
+        continue
+    elif STOP_ID_1 == "c":
+        STOP_ID_1 = "d"
+        continue
+    elif STOP_ID_1 == "d":
+        STOP_ID_1 = "e"
+        continue
+    elif STOP_ID_1 == "e":
+        STOP_ID_1 = "f"
+        continue
+    elif STOP_ID_1 == "f":
+        STOP_ID_1 = "g"
+        continue
+    elif STOP_ID_1 == "g":
+        STOP_ID_1 = "h"
+        continue
+    elif STOP_ID_1 == "h":
+        STOP_ID_1 = "i"
+        continue
+    elif STOP_ID_1 == "i":
+        STOP_ID_1 = "j"
+        continue
+    elif STOP_ID_1 == "j":
+        STOP_ID_1 = "k"
+        continue
+    elif STOP_ID_1 == "k":
+        STOP_ID_1 = "l"
+        continue
+    elif STOP_ID_1 == "l":
+        STOP_ID_1 = "m"
+        continue
+    elif STOP_ID_1 == "m":
+        STOP_ID_1 = "n"
+        continue
+    elif STOP_ID_1 == "n":
+        STOP_ID_1 = "o"
+        continue
+    elif STOP_ID_1 == "o":
+        STOP_ID_1 = "p"
+        continue
+    elif STOP_ID_1 == "p":
+        STOP_ID_1 = "q"
+        continue
+    elif STOP_ID_1 == "q":
+        STOP_ID_1 = "r"
+        continue
+    elif STOP_ID_1 == "r":
+        STOP_ID_1 = "s"
+        continue
+    elif STOP_ID_1 == "s":
+        STOP_ID_1 = "t"
+        continue
+    elif STOP_ID_1 == "t":
+        STOP_ID_1 = "u"
+        continue
+    elif STOP_ID_1 == "u":
+        STOP_ID_1 = "v"
+        continue
+    elif STOP_ID_1 == "v":
+        STOP_ID_1 = "w"
+        continue
+    elif STOP_ID_1 == "w":
+        STOP_ID_1 = "x"
+        continue
+    elif STOP_ID_1 == "x":
+        STOP_ID_1 = "y"
+        continue
+    elif STOP_ID_1 == "y":
+        STOP_ID_1 = "z"
+        continue
+    elif STOP_ID_1 == "z":
+        STOP_ID_1 = "A"
+        continue
+    elif STOP_ID_1 == "A":
+        STOP_ID_1 = "B"
+        continue
+    elif STOP_ID_1 == "B":
+        STOP_ID_1 = "C"
+        continue
+    elif STOP_ID_1 == "C":
+        STOP_ID_1 = "D"
+        continue
+    elif STOP_ID_1 == "D":
+        STOP_ID_1 = "E"
+        continue
+    elif STOP_ID_1 == "E":
+        STOP_ID_1 = "F"
+        continue
+    elif STOP_ID_1 == "F":
+        STOP_ID_1 = "G"
+        continue
+    elif STOP_ID_1 == "G":
+        STOP_ID_1 = "H"
+        continue
+    elif STOP_ID_1 == "H":
+        STOP_ID_1 = "I"
+        continue
+    elif STOP_ID_1 == "I":
+        STOP_ID_1 = "J"
+        continue
+    elif STOP_ID_1 == "J":
+        STOP_ID_1 = "K"
+        continue
+    elif STOP_ID_1 == "K":
+        STOP_ID_1 = "L"
+        continue
+    elif STOP_ID_1 == "L":
+        STOP_ID_1 = "M"
+        continue
+    elif STOP_ID_1 == "M":
+        STOP_ID_1 = "N"
+        continue
+    elif STOP_ID_1 == "N":
+        STOP_ID_1 = "O"
+        continue
+    elif STOP_ID_1 == "O":
+        STOP_ID_1 = "P"
+        continue
+    elif STOP_ID_1 == "P":
+        STOP_ID_1 = "Q"
+        continue
+    elif STOP_ID_1 == "Q":
+        STOP_ID_1 = "R"
+        continue
+    elif STOP_ID_1 == "R":
+        STOP_ID_1 = "S"
+        continue
+    elif STOP_ID_1 == "S":
+        STOP_ID_1 = "T"
+        continue
+    elif STOP_ID_1 == "T":
+        STOP_ID_1 = "U"
+        continue
+    elif STOP_ID_1 == "U":
+        STOP_ID_1 = "V"
+        continue
+    elif STOP_ID_1 == "V":
+        STOP_ID_1 = "W"
+        continue
+    elif STOP_ID_1 == "W":
+        STOP_ID_1 = "X"
+        continue
+    elif STOP_ID_1 == "X":
+        STOP_ID_1 = "Y"
+        continue
+    elif STOP_ID_1 == "Y":
+        STOP_ID_1 = "Z"
+        continue
+    if STOP_ID_1 == "Z":
+        STOP_ID_1 = "a"
+        if STOP_ID_2 == "a":
+            STOP_ID_2 = "b"
+            continue
+        elif STOP_ID_2 == "b":
+            STOP_ID_2 = "c"
+            continue
+        elif STOP_ID_2 == "c":
+            STOP_ID_2 = "d"
+            continue
+        elif STOP_ID_2 == "d":
+            STOP_ID_2 = "e"
+            continue
+        elif STOP_ID_2 == "e":
+            STOP_ID_2 = "f"
+            continue
+        elif STOP_ID_2 == "f":
+            STOP_ID_2 = "g"
+            continue
+        elif STOP_ID_2 == "g":
+            STOP_ID_2 = "h"
+            continue
+        elif STOP_ID_2 == "h":
+            STOP_ID_2 = "i"
+            continue
+        elif STOP_ID_2 == "i":
+            STOP_ID_2 = "j"
+            continue
+        elif STOP_ID_2 == "j":
+            STOP_ID_2 = "k"
+            continue
+        elif STOP_ID_2 == "k":
+            STOP_ID_2 = "l"
+            continue
+        elif STOP_ID_2 == "l":
+            STOP_ID_2 = "m"
+            continue
+        elif STOP_ID_2 == "m":
+            STOP_ID_2 = "n"
+            continue
+        elif STOP_ID_2 == "n":
+            STOP_ID_2 = "o"
+            continue
+        elif STOP_ID_2 == "o":
+            STOP_ID_2 = "p"
+            continue
+        elif STOP_ID_2 == "p":
+            STOP_ID_2 = "q"
+            continue
+        elif STOP_ID_2 == "q":
+            STOP_ID_2 = "r"
+            continue
+        elif STOP_ID_2 == "r":
+            STOP_ID_2 = "s"
+            continue
+        elif STOP_ID_2 == "s":
+            STOP_ID_2 = "t"
+            continue
+        elif STOP_ID_2 == "t":
+            STOP_ID_2 = "u"
+            continue
+        elif STOP_ID_2 == "u":
+            STOP_ID_2 = "v"
+            continue
+        elif STOP_ID_2 == "v":
+            STOP_ID_2 = "w"
+            continue
+        elif STOP_ID_2 == "w":
+            STOP_ID_2 = "x"
+            continue
+        elif STOP_ID_2 == "x":
+            STOP_ID_2 = "y"
+            continue
+        elif STOP_ID_2 == "y":
+            STOP_ID_2 = "z"
+            continue
+        elif STOP_ID_2 == "z":
+            STOP_ID_2 = "A"
+            continue
+        elif STOP_ID_2 == "A":
+            STOP_ID_2 = "B"
+            continue
+        elif STOP_ID_2 == "B":
+            STOP_ID_2 = "C"
+            continue
+        elif STOP_ID_2 == "C":
+            STOP_ID_2 = "D"
+            continue
+        elif STOP_ID_2 == "D":
+            STOP_ID_2 = "E"
+            continue
+        elif STOP_ID_2 == "E":
+            STOP_ID_2 = "F"
+            continue
+        elif STOP_ID_2 == "F":
+            STOP_ID_2 = "G"
+            continue
+        elif STOP_ID_2 == "G":
+            STOP_ID_2 = "H"
+            continue
+        elif STOP_ID_2 == "H":
+            STOP_ID_2 = "I"
+            continue
+        elif STOP_ID_2 == "I":
+            STOP_ID_2 = "J"
+            continue
+        elif STOP_ID_2 == "J":
+            STOP_ID_2 = "K"
+            continue
+        elif STOP_ID_2 == "K":
+            STOP_ID_2 = "L"
+            continue
+        elif STOP_ID_2 == "L":
+            STOP_ID_2 = "M"
+            continue
+        elif STOP_ID_2 == "M":
+            STOP_ID_2 = "N"
+            continue
+        elif STOP_ID_2 == "N":
+            STOP_ID_2 = "O"
+            continue
+        elif STOP_ID_2 == "O":
+            STOP_ID_2 = "P"
+            continue
+        elif STOP_ID_2 == "P":
+            STOP_ID_2 = "Q"
+            continue
+        elif STOP_ID_2 == "Q":
+            STOP_ID_2 = "R"
+            continue
+        elif STOP_ID_2 == "R":
+            STOP_ID_2 = "S"
+            continue
+        elif STOP_ID_2 == "S":
+            STOP_ID_2 = "T"
+            continue
+        elif STOP_ID_2 == "T":
+            STOP_ID_2 = "U"
+            continue
+        elif STOP_ID_2 == "U":
+            STOP_ID_2 = "V"
+            continue
+        elif STOP_ID_2 == "V":
+            STOP_ID_2 = "W"
+            continue
+        elif STOP_ID_2 == "W":
+            STOP_ID_2 = "X"
+            continue
+        elif STOP_ID_2 == "X":
+            STOP_ID_2 = "Y"
+            continue
+        elif STOP_ID_2 == "Y":
+            STOP_ID_2 = "Z"
+            continue
+        if STOP_ID_2 == "Z":
+            STOP_ID_2 = "a"
+            if STOP_ID_3 == "a":
+                STOP_ID_3 = "b"
+                continue
+            elif STOP_ID_3 == "b":
+                STOP_ID_3 = "c"
+                continue
+            elif STOP_ID_3 == "c":
+                STOP_ID_3 = "d"
+                continue
+            elif STOP_ID_3 == "d":
+                STOP_ID_3 = "e"
+                continue
+            elif STOP_ID_3 == "e":
+                STOP_ID_3 = "f"
+                continue
+            elif STOP_ID_3 == "f":
+                STOP_ID_3 = "g"
+                continue
+            elif STOP_ID_3 == "g":
+                STOP_ID_3 = "h"
+                continue
+            elif STOP_ID_3 == "h":
+                STOP_ID_3 = "i"
+                continue
+            elif STOP_ID_3 == "i":
+                STOP_ID_3 = "j"
+                continue
+            elif STOP_ID_3 == "j":
+                STOP_ID_3 = "k"
+                continue
+            elif STOP_ID_3 == "k":
+                STOP_ID_3 = "l"
+                continue
+            elif STOP_ID_3 == "l":
+                STOP_ID_3 = "m"
+                continue
+            elif STOP_ID_3 == "m":
+                STOP_ID_3 = "n"
+                continue
+            elif STOP_ID_3 == "n":
+                STOP_ID_3 = "o"
+                continue
+            elif STOP_ID_3 == "o":
+                STOP_ID_3 = "p"
+                continue
+            elif STOP_ID_3 == "p":
+                STOP_ID_3 = "q"
+                continue
+            elif STOP_ID_3 == "q":
+                STOP_ID_3 = "r"
+                continue
+            elif STOP_ID_3 == "r":
+                STOP_ID_3 = "s"
+                continue
+            elif STOP_ID_3 == "s":
+                STOP_ID_3 = "t"
+                continue
+            elif STOP_ID_3 == "t":
+                STOP_ID_3 = "u"
+                continue
+            elif STOP_ID_3 == "u":
+                STOP_ID_3 = "v"
+                continue
+            elif STOP_ID_3 == "v":
+                STOP_ID_3 = "w"
+                continue
+            elif STOP_ID_3 == "w":
+                STOP_ID_3 = "x"
+                continue
+            elif STOP_ID_3 == "x":
+                STOP_ID_3 = "y"
+                continue
+            elif STOP_ID_3 == "y":
+                STOP_ID_3 = "z"
+                continue
+            elif STOP_ID_3 == "z":
+                STOP_ID_3 = "A"
+                continue
+            elif STOP_ID_3 == "A":
+                STOP_ID_3 = "B"
+                continue
+            elif STOP_ID_3 == "B":
+                STOP_ID_3 = "C"
+                continue
+            elif STOP_ID_3 == "C":
+                STOP_ID_3 = "D"
+                continue
+            elif STOP_ID_3 == "D":
+                STOP_ID_3 = "E"
+                continue
+            elif STOP_ID_3 == "E":
+                STOP_ID_3 = "F"
+                continue
+            elif STOP_ID_3 == "F":
+                STOP_ID_3 = "G"
+                continue
+            elif STOP_ID_3 == "G":
+                STOP_ID_3 = "H"
+                continue
+            elif STOP_ID_3 == "H":
+                STOP_ID_3 = "I"
+                continue
+            elif STOP_ID_3 == "I":
+                STOP_ID_3 = "J"
+                continue
+            elif STOP_ID_3 == "J":
+                STOP_ID_3 = "K"
+                continue
+            elif STOP_ID_3 == "K":
+                STOP_ID_3 = "L"
+                continue
+            elif STOP_ID_3 == "L":
+                STOP_ID_3 = "M"
+                continue
+            elif STOP_ID_3 == "M":
+                STOP_ID_3 = "N"
+                continue
+            elif STOP_ID_3 == "N":
+                STOP_ID_3 = "O"
+                continue
+            elif STOP_ID_3 == "O":
+                STOP_ID_3 = "P"
+                continue
+            elif STOP_ID_3 == "P":
+                STOP_ID_3 = "Q"
+                continue
+            elif STOP_ID_3 == "Q":
+                STOP_ID_3 = "R"
+                continue
+            elif STOP_ID_3 == "R":
+                STOP_ID_3 = "S"
+                continue
+            elif STOP_ID_3 == "S":
+                STOP_ID_3 = "T"
+                continue
+            elif STOP_ID_3 == "T":
+                STOP_ID_3 = "U"
+                continue
+            elif STOP_ID_3 == "U":
+                STOP_ID_3 = "V"
+                continue
+            elif STOP_ID_3 == "V":
+                STOP_ID_3 = "W"
+                continue
+            elif STOP_ID_3 == "W":
+                STOP_ID_3 = "X"
+                continue
+            elif STOP_ID_3 == "X":
+                STOP_ID_3 = "Y"
+                continue
+            elif STOP_ID_3 == "Y":
+                STOP_ID_3 = "Z"
+                continue
+            if STOP_ID_3 == "Z":
+                continue
 
-if __name__ == '__main__':
-    try:
-        bot.run(BOT_TOKEN)
-    except discord.errors.LoginFailure:
-        print("LOGIN FAILED: Please check your BOT_TOKEN in STEP 0.")
-    except Exception as e:
-        print(f"Error running bot: {e}")
+
+
