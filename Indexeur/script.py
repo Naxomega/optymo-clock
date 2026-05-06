@@ -501,6 +501,7 @@ while True:
                 STOP_ID_3 = "Z"
                 continue
             if STOP_ID_3 == "Z":
+                print("Fin Atteinte !")
                 break
 
 
