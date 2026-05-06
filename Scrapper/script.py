@@ -1,4 +1,15 @@
-from urllib.request import urlopen  # For fixing relative URLs
+# DISCLAIMER : Je (Naxoméga) ne peux être tenu responsable sur l'usage que vous faites
+# de cet outil, il est crée avec comme but de déduire les URLs des QR Codes sur les arrêts.
+# COMMENT FONCTIONNE-IL ?
+# Il utilise 3 variables qui vont s'incrémenter à chaque boucle, comme des chiffres, mais à la place,
+# ce sont des lettres a-Z. Le script va charger l'url de base avec cette combinaison de 3 lettres
+# et regarder si elle est valide ou pas (en vérifiant le titre du site), si elle l'est, 
+# la combinaison ainsi que le nom de l'arrêt vont être affichés dans la console. Si elle ne l'est pas, l'outil continue.
+# ET LES SERVEURS ALORS ?
+# J'ai inutilement rallongé le code afin de laisser les serveurs souffler (mais pas le PC qui le lance :/ ) (voir lignes 39-504)
+# De plus, lors de mes tests, les serveurs fonctionnaient toujours sans problèmes de temps de chargement anormalement long.
+from urllib.request import urlopen
+
 
 
 BASE_URL = "https://siv.optymo.fr/passage.php?ar="
