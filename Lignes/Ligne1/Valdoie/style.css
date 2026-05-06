@@ -85,7 +85,6 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    color: white;
     font-weight: bold;
     text-decoration: none;
     font-size: 18px;
@@ -94,27 +93,47 @@ body {
 
 .line-1 {
     background-color: #d3414e;
+    color: white;
 }
 
 .line-2 {
     background-color: #e79129;
+    color: white;
 }
 
 .line-3 {
     background-color: #60a4df;
+    color: white;
 }
 
 .line-4 {
     background-color: #570091;
+    color: white;
 }
 
 .line-5 {
     background-color: #68c88c;
+    color: white;
 }
 
 .line-8 {
     background-color: #beaa61;
+    color: white;
 }
+
+.line-9 {background-color: #324e87; color: white;}
+.line-x {background-color: #9a61b9; color: white;}
+.line-20 {background-color: #33888a; color: white;}
+.line-21 {background-color: #3f55c5; color: white;}
+.line-22 {background-color: #3f55c5; color: white;}
+.line-23 {background-color: #e88439; color: white;}
+.line-24 {background-color: #f8fc6d; color: black;}
+.line-25 {background-color: #6a4893; color: white;}
+.line-26 {background-color: #bec537; color: white;}
+
+
+
+
 
 a,
 .line-link,
