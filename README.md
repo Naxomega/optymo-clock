@@ -1,5 +1,5 @@
 > [!WARNING]
-> Ce projet n'est en AUCUN CAS affilié ou maintenu de quelconque manière que ca soit, à Optymo, la Régie des Transports du Territoire de Belfort ou le Syndicat Mixte des Transports en Commun.
+> Ce projet n'est en AUCUN CAS affilié ou maintenu de quelconque manière que ca soit, à Optymo, la Régie des Transports du Territoire de Belfort (RTTB) ou le Syndicat Mixte des Transports en Commun (SMTC).
 # Optymo' Clock
 Optymo' Clock est un projet visant à réunir un maximum de pages d'horaires en temps réel fournies par Optymo\
 Bien évidemment, Optymo' Clock est uniquement un moyen d'accès aux pages d'horaires, qui sont faites par Optymo\
@@ -11,9 +11,9 @@ Les pages web ne contiennent aucune interactivité, elles jouent uniquement le r
 Elles utilisent un iframe, permettant d'inclure les pages d'Optymo, et de pouvoir les personnaliser un peu, et d'ajouter des infos supplémentaires.
 
 ## Lignes Disponibles
-Ligne 1 vers Valdoie (O'C V2)
-Ligne 1 vers Résidences (O'C V1)
-Les lignes 2, 3, 4, 5, 8 et 9 seront aussi disponibles à l'avenir.
+Ligne 1 vers Valdoie (O'C V2)\
+Ligne 1 vers Résidences (O'C V1)\
+Les lignes 2, 3, 4, 5, 8 et 9 seront aussi disponibles à l'avenir.\
 Etant donné la manière dont le site est crée, je ne peut pas implémenter les lignes secondaires (20-26) et suburbaines (30-40, 90-93)
 
 
