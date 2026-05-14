@@ -102,13 +102,13 @@ body {
     font-weight: bold; /* Bold text */
     text-decoration: none; /* Remove underline */
     text-align: center; /* Center the text inside the link */
-    padding: 10px 15px; /* Add some padding for better spacing */
+    padding: 5px 15px; /* Add some padding for better spacing */
     border-radius: 10px; /* Optional: Add rounded corners */
     background-color: var(--line-color, #e79129); /* Use the line color or fallback */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
     font-size: 18px; /* Adjust font size for readability on smaller screens */
     min-width: 120px; /* Ensure links have a consistent minimum width */
-    max-width: 150px; /* Prevent links from becoming too wide */
+    max-width: 300px; /* Prevent links from becoming too wide */
     box-sizing: border-box; /* Include padding in width calculations */
     outline: none; /* Remove the default blue outline */
 }
