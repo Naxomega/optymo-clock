@@ -106,3 +106,83 @@ a,
 .line-8 {
     background-color: #beaa61;
 }
+a,
+.line-link,
+.line-dot {
+    -webkit-tap-highlight-color: transparent; /* Remove the blue highlight on mobile */
+    outline: none; /* Remove the default focus outline */
+}
+
+.line-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 45%;      /* Prend 45% de la largeur du conteneur, s'adapte */
+    max-width: 200px;   /* Largeur max pour éviter des boutons trop larges */
+    min-width: 120px;   /* Largeur min pour éviter des boutons trop petits */
+    height: 48px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 10px;
+    background-color: var(--line-color, #e79129);
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 18px;
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.line-link:hover {
+    background-color: #d17a1f;
+    transform: scale(1.05);
+}
+
+.line-link span {
+    display: inline-block; /* Ensure each word is inline */
+    margin: 0 5px; /* Add spacing between words */
+}
+
+.line-link span.notbold {
+    font-weight: normal; /* Make the text not bold */
+}
+
+.notbold {
+    font-weight: 400;
+}
+
+@media (max-width: 600px) {
+    .line-link {
+        flex: 1 1 48%;   /* 2 boutons par ligne sur mobile */
+        max-width: 100%;
+    }
+}
+#wrap {
+  width: 750px;
+  height: 1500px;
+  overflow: hidden;
+  
+}
+
+#scaled-frame {
+  width: 73%;
+  height: 500;
+  transform: scale(1.30);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  align-items: center;
+}
+.list-title {
+    margin-bottom: 1px; /* Brings the title closer to the list */
+}
+
+.notable-list {
+    margin-top: 0;      /* Removes the top gap of the list */
+    padding-left: 20px; /* Keeps the bullets indented */
+    list-style-position: inside; /* Centers the bullets better in your layout */
+    text-align: left;   /* Optional: keeps the items aligned if you prefer */
+}
