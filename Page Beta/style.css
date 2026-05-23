@@ -17,6 +17,18 @@ body {
     margin: 0;
     padding: 0;
 }
+/* Style du bouton spécial 3DS / Wii U */
+.ds-button {
+    display: inline-block;
+    background-color: #d3414e; /* Rouge Optymo */
+    color: #ffffff;
+    padding: 15px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 2px solid #000;
+    margin: 10px 0;
+}
 
 .top-bar li {
     display: inline;
