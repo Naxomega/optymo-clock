@@ -106,6 +106,22 @@ a,
 .line-8 {
     background-color: #beaa61;
 }
+.line-9 {background-color: #324e87; color: white;}
+.line-x {background-color: #9a61b9; color: white;}
+.line-20 {background-color: #33888a; color: white;}
+.line-21 {background-color: #3f55c5; color: white;}
+.line-22 {background-color: #3f55c5; color: white;}
+.line-23 {background-color: #e88439; color: white;}
+.line-24 {background-color: #f8fc6d; color: black;}
+.line-25 {background-color: #6a4893; color: white;}
+.line-26 {background-color: #bec537; color: white;}
+.line-ter {background-color: #034ea2; color: white;}
+.subline-even {background-color: #b4b1a8; color: white;}
+.subline-odd {background-color: #6a5841; color: white;}
+.line-90 {background-color: #70acad; color: white;}
+.line-91 {background-color: #7989d7; color: white;}
+.line-92 {background-color: #efa974; color: white;}
+.line-93 {background-color: #977fb3; color: white;}
 a,
 .line-link,
 .line-dot {
