@@ -20,7 +20,7 @@ Ligne 1 vers Résidences (O'C V1)\
 Ligne 2 vers Argiésans/Bavilliers/Cravanche (WIP)\
 Ligne 2 vers Justice (WIP)\
 Les lignes 3, 4, 5, 8 seront aussi disponibles à l'avenir.\
-Etant donné la manière dont le site est crée, je ne peut pas implémenter la ligne 9, les lignes secondaires (20-26) et suburbaines (30-40, 90-93)
+Etant donné la manière dont le site est crée, je ne peut pas implémenter la ligne 9, les lignes secondaires (20-26) et suburbaines (30-40, 90-93) de la mème manière que les lignes urbaines (les boutons redirigent vers les PDF des horaires, c'est rudimentaire mais c'est impossible de faire autrement)
 
 
 # MENTIONS LEGALES
