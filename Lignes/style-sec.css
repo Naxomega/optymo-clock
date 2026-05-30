@@ -142,7 +142,7 @@ a,
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
-    background-color: var(--line-color, #333);
+    background-color: var(--line-color, #746d5b);
     transition: background-color 0.3s, transform 0.2s;
     font-size: 18px;
     box-sizing: border-box;
@@ -154,16 +154,16 @@ a,
 }
 
 .line-link:hover {
-    background-color: #555;
+    background-color: #968f7d;
     transform: scale(1.01);
 }
 
-.line-link h3 {
+.line-link span {
     display: inline-block; /* Ensure each word is inline */
     margin: 0 5px; /* Add spacing between words */
 }
 
-.line-link h3.notbold {
+.line-link span.notbold {
     font-weight: normal; /* Make the text not bold */
 }
 
