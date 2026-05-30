@@ -2,20 +2,22 @@
 # de cet outil, il est crée avec comme but de déduire les URLs des QR Codes sur les arrêts.
 # COMMENT FONCTIONNE-IL ?
 # Il utilise 3 variables qui vont s'incrémenter à chaque boucle, comme des chiffres, mais à la place,
-# ce sont des lettres a-Z. Le script va charger l'url de base avec cette combinaison de 3 lettres
+# ce sont des lettres a-Z et chiffres 0-9. Le script va charger l'url de base avec cette combinaison de 3 caractères
 # et regarder si elle est valide ou pas (en vérifiant le titre du site), si elle l'est, 
 # la combinaison ainsi que le nom de l'arrêt vont être affichés dans la console. Si elle ne l'est pas, l'outil continue.
 # ET LES SERVEURS ALORS ?
-# J'ai inutilement rallongé le code afin de laisser les serveurs souffler (mais pas le PC qui le lance :/ ) (voir lignes 39-504)
+# J'ai inutilement rallongé le code afin de laisser les serveurs souffler (mais pas le PC qui le lance :/ ) (voir lignes 39-595)
+# J'aurais pu optimiser plus le code avec un "for i in range..." mais ca aurait rendu le code plus rapide
+# et j'ai pas trop envie de faire chier les belfortains qui ont un usage légitime du site.
 # De plus, lors de mes tests, les serveurs fonctionnaient toujours sans problèmes de temps de chargement anormalement long.
 from urllib.request import urlopen
 
 
 
 BASE_URL = "https://siv.optymo.fr/passage.php?ar="
-STOP_ID_1 = "a"
+STOP_ID_1 = "4"
 STOP_ID_2 = "a"
-STOP_ID_3 = "a"
+STOP_ID_3 = "s"
 FINAL_URL = None
 FINISH = False
 print("Scrapper Lancé !")
@@ -190,7 +192,37 @@ while True:
     elif STOP_ID_1 == "Y":
         STOP_ID_1 = "Z"
         continue
-    if STOP_ID_1 == "Z":
+    elif STOP_ID_1 == "Z":
+        STOP_ID_1 = "1"
+        continue
+    elif STOP_ID_1 == "1":
+        STOP_ID_1 = "2"
+        continue
+    elif STOP_ID_1 == "2":
+        STOP_ID_1 = "3"
+        continue
+    elif STOP_ID_1 == "3":
+        STOP_ID_1 = "4"
+        continue
+    elif STOP_ID_1 == "4":
+        STOP_ID_1 = "5"
+        continue
+    elif STOP_ID_1 == "5":
+        STOP_ID_1 = "6"
+        continue
+    elif STOP_ID_1 == "6":
+        STOP_ID_1 = "7"
+        continue
+    elif STOP_ID_1 == "7":
+        STOP_ID_1 = "8"
+        continue
+    elif STOP_ID_1 == "8":
+        STOP_ID_1 = "9"
+        continue
+    elif STOP_ID_1 == "9":
+        STOP_ID_1 = "0"
+        continue
+    if STOP_ID_1 == "0":
         STOP_ID_1 = "a"
         if STOP_ID_2 == "a":
             STOP_ID_2 = "b"
@@ -345,7 +377,37 @@ while True:
         elif STOP_ID_2 == "Y":
             STOP_ID_2 = "Z"
             continue
-        if STOP_ID_2 == "Z":
+        elif STOP_ID_2 == "Z":
+            STOP_ID_2 = "1"
+            continue
+        elif STOP_ID_2 == "1":
+            STOP_ID_2 = "2"
+            continue
+        elif STOP_ID_2 == "2":
+            STOP_ID_2 = "3"
+            continue
+        elif STOP_ID_2 == "3":
+            STOP_ID_2 = "4"
+            continue
+        elif STOP_ID_2 == "4":
+            STOP_ID_2 = "5"
+            continue
+        elif STOP_ID_2 == "5":
+            STOP_ID_2 = "6"
+            continue
+        elif STOP_ID_2 == "6":
+            STOP_ID_2 = "7"
+            continue
+        elif STOP_ID_2 == "7":
+            STOP_ID_2 = "8"
+            continue
+        elif STOP_ID_2 == "8":
+            STOP_ID_2 = "9"
+            continue
+        elif STOP_ID_2 == "9":
+            STOP_ID_2 = "0"
+            continue
+        if STOP_ID_2 == "0":
             STOP_ID_2 = "a"
             if STOP_ID_3 == "a":
                 STOP_ID_3 = "b"
@@ -500,7 +562,37 @@ while True:
             elif STOP_ID_3 == "Y":
                 STOP_ID_3 = "Z"
                 continue
-            if STOP_ID_3 == "Z":
+            elif STOP_ID_3 == "Z":
+                STOP_ID_3 = "1"
+                continue
+            elif STOP_ID_3 == "1":
+                STOP_ID_3 = "2"
+                continue
+            elif STOP_ID_3 == "2":
+                STOP_ID_3 = "3"
+                continue
+            elif STOP_ID_3 == "3":
+                STOP_ID_3 = "4"
+                continue
+            elif STOP_ID_3 == "4":
+                STOP_ID_3 = "5"
+                continue
+            elif STOP_ID_3 == "5":
+                STOP_ID_3 = "6"
+                continue
+            elif STOP_ID_3 == "6":
+                STOP_ID_3 = "7"
+                continue
+            elif STOP_ID_3 == "7":
+                STOP_ID_3 = "8"
+                continue
+            elif STOP_ID_3 == "8":
+                STOP_ID_3 = "9"
+                continue
+            elif STOP_ID_3 == "9":
+                STOP_ID_3 = "0"
+                continue
+            if STOP_ID_3 == "0":
                 print("Fin Atteinte !")
                 break
 
