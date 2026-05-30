@@ -166,6 +166,13 @@ a,
 .line-link h3.notbold {
     font-weight: normal; /* Make the text not bold */
 }
+.link-container {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow links to wrap to the next line on smaller screens */
+    justify-content: center; /* Center the links horizontally */
+    gap: 15px; /* Add space between the links */
+    padding: 10px; /* Add padding to prevent links from touching the edges */
+}
 
 .notbold {
     font-weight: 400;
