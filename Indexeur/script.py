@@ -15,8 +15,8 @@ from urllib.request import urlopen
 
 
 BASE_URL = "https://siv.optymo.fr/passage.php?ar="
-STOP_ID_1 = "4"
-STOP_ID_2 = "a"
+STOP_ID_1 = "R"
+STOP_ID_2 = "o"
 STOP_ID_3 = "s"
 FINAL_URL = None
 FINISH = False
@@ -594,6 +594,7 @@ while True:
                 continue
             if STOP_ID_3 == "0":
                 print("Fin Atteinte !")
+                input("Appuyez sur Entrée pour fermer.")
                 break
 
 
