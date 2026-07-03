@@ -958,7 +958,7 @@ def mettre_a_jour_fichier_accueil(nom_fichier, dict_urls_fraiches):
     with open(chemin_complet, "r", encoding="utf-8") as f:
         lignes = f.readlines()
 
-    modifie = False
+    modifie2 = False
     for i in range(len(lignes)):
         # On vérifie d'abord si c'est une ligne qui nous intéresse
         if 'class="line-dot' in lignes[i]:
@@ -976,10 +976,10 @@ def mettre_a_jour_fichier_accueil(nom_fichier, dict_urls_fraiches):
                         if url and "http" in url:
                             # On remplace la ligne proprement
                             lignes[i] = f'            <a href="{url}" class="line-dot {classe_css}">{num_bus}</a>\n'
-                            modifie = True
+                            modifie2 = True
                             break # On a trouvé le bon bus pour cette ligne, on arrête de chercher pour cette ligne i
     
-    if modifie:
+    if modifie2:
         with open(chemin_complet, "w", encoding="utf-8") as f:
             f.writelines(lignes)
         print(f"💾 {nom_fichier} mis à jour avec succès.")
