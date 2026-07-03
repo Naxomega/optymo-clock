@@ -4,7 +4,6 @@ from urllib.parse import urljoin
 
 # --- CONFIGURATION ---
 URL_CIBLE = "https://www.optymo.fr/bus/horaires-et-plans/"
-# On utilise l'URL du picto que tu m'as donnée comme point d'ancrage
 IMAGE_PICTO_L20 = "https://www.optymo.fr/wp-content/uploads/2021/08/SMTC-Picto-L20.png"
 IMAGE_PICTO_L21 = "https://www.optymo.fr/wp-content/uploads/2021/08/SMTC-Picto-L21.png"
 IMAGE_PICTO_L23 = "https://www.optymo.fr/wp-content/uploads/2021/08/SMTC-Picto-L23.png"
@@ -27,6 +26,7 @@ IMAGE_PICTO_L91 = "https://www.optymo.fr/wp-content/uploads/2021/08/SMTC-Picto-L
 IMAGE_PICTO_L92 = "https://www.optymo.fr/wp-content/uploads/2021/08/SMTC-Picto-L92.png"
 IMAGE_PICTO_L93 = "https://www.optymo.fr/wp-content/uploads/2021/08/SMTC-Picto-L93.png"
 IMAGE_PICTO_LX = "https://www.optymo.fr/wp-content/uploads/2021/08/SMTC-Picto-LX.png"
+IMAGE_PICTO_L9 = "https://www.optymo.fr/wp-content/uploads/2021/08/SMTC-Picto-L9.png"
 import os
 
 # Configuration des cibles
@@ -58,6 +58,7 @@ CONFIG_LIGNES = {
     "91": ("Suburbain.html", "line-91"),
     "92": ("Suburbain.html", "line-92"),
     "93": ("Suburbain.html", "line-93"),
+    "9": ("index.html", "line-9"),
 }
 
 def recuperer_url_ligne_20():
@@ -875,8 +876,80 @@ def recuperer_url_ligne_X():
 
     except Exception as e:
         return f"❌ Erreur lors du scraping : {e}"
+def recuperer_url_ligne_9():
+    print(f"🔍 Connexion à {URL_CIBLE}...")
+    
+    try:
+        # 1. On récupère le contenu de la page
+        # Le 'headers' simule un vrai navigateur pour éviter d'être bloqué
+        headers = {'User-Agent': 'Mozilla/5.0'}
+        reponse = requests.get(URL_CIBLE, headers=headers, timeout=15)
+        reponse.raise_for_status() # Vérifie si la page a chargé correctement
+
+        # 2. On prépare BeautifulSoup
+        soup = BeautifulSoup(reponse.text, 'html.parser')
+
+        # 3. On cherche l'image. 
+        # On essaie de la trouver via 'src' OU 'data-src' (sécurité lazy-loading)
+        image = soup.find("img", attrs={"src": IMAGE_PICTO_L9}) or \
+                soup.find("img", attrs={"data-src": IMAGE_PICTO_L9})
+
+        if image:
+            print("✅ Picto Ligne 9 trouvé !")
+            
+            # 4. On remonte à la balise <a> qui contient le lien
+            lien_parent = image.find_parent("a")
+            
+            if lien_parent and lien_parent.has_attr('href'):
+                url_pdf = lien_parent['href']
+                
+                # 5. On s'assure que l'URL est complète (absolue)
+                url_complete = urljoin(URL_CIBLE, url_pdf)
+                return url_complete
+            else:
+                return "❌ Image trouvée, mais aucun lien <a> autour."
+        else:
+            return "❌ Impossible de trouver l'image du picto sur la page."
+
+    except Exception as e:
+        return f"❌ Erreur lors du scraping : {e}"
 def mettre_a_jour_fichier_groupe(nom_fichier, dict_urls_fraiches):
     chemin_complet = os.path.join("Lignes", nom_fichier)
+    
+    if not os.path.exists(chemin_complet):
+        print(f"❌ Erreur : {chemin_complet} introuvable.")
+        return
+
+    with open(chemin_complet, "r", encoding="utf-8") as f:
+        lignes = f.readlines()
+
+    modifie = False
+    for i in range(len(lignes)):
+        # On vérifie d'abord si c'est une ligne qui nous intéresse
+        if 'class="line-dot' in lignes[i]:
+            
+            # On cherche quel bus de notre config correspond à cette ligne précise
+            for num_bus, (fichier_cible, classe_css) in CONFIG_LIGNES.items():
+                if fichier_cible == nom_fichier:
+                    
+                    # CONDITION DOUBLE : La classe CSS ET le numéro du bus doivent correspondre
+                    # On cherche ">30</a>" par exemple
+                    identifiant_unique = f">{num_bus}</a>"
+                    
+                    if classe_css in lignes[i] and identifiant_unique in lignes[i]:
+                        url = dict_urls_fraiches.get(num_bus)
+                        if url and "http" in url:
+                            # On remplace la ligne proprement
+                            lignes[i] = f'            <a href="{url}" class="line-dot {classe_css}">{num_bus}</a>\n'
+                            modifie = True
+                            break # On a trouvé le bon bus pour cette ligne, on arrête de chercher pour cette ligne i
+    
+    if modifie:
+        with open(chemin_complet, "w", encoding="utf-8") as f:
+            f.writelines(lignes)
+        print(f"💾 {nom_fichier} mis à jour avec succès.")
+def mettre_a_jour_fichier_accueil(nom_fichier, dict_urls_fraiches):
+    chemin_complet = os.path.join(nom_fichier)
     
     if not os.path.exists(chemin_complet):
         print(f"❌ Erreur : {chemin_complet} introuvable.")
@@ -935,6 +1008,7 @@ if __name__ == "__main__":
         "91": recuperer_url_ligne_91(),
         "92": recuperer_url_ligne_92(),
         "93": recuperer_url_ligne_93(),
+        "9": recuperer_url_ligne_9(),
     }
     print("\n--- Phase d'écriture ---")
     mettre_a_jour_fichier_groupe("Secondaire.html", urls_extraites)
