@@ -1013,3 +1013,4 @@ if __name__ == "__main__":
     print("\n--- Phase d'écriture ---")
     mettre_a_jour_fichier_groupe("Secondaire.html", urls_extraites)
     mettre_a_jour_fichier_groupe("Suburbain.html", urls_extraites)
+    mettre_a_jour_fichier_accueil("index.html", urls_extraites)
