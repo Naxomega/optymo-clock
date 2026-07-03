@@ -925,29 +925,30 @@ def mettre_a_jour_fichier_groupe(nom_fichier, dict_urls_fraiches):
 
     modifie = False
     for i in range(len(lignes)):
-        # On vérifie d'abord si c'est une ligne qui nous intéresse
         if 'class="line-dot' in lignes[i]:
-            
-            # On cherche quel bus de notre config correspond à cette ligne précise
             for num_bus, (fichier_cible, classe_css) in CONFIG_LIGNES.items():
                 if fichier_cible == nom_fichier:
-                    
-                    # CONDITION DOUBLE : La classe CSS ET le numéro du bus doivent correspondre
-                    # On cherche ">30</a>" par exemple
                     identifiant_unique = f">{num_bus}</a>"
                     
                     if classe_css in lignes[i] and identifiant_unique in lignes[i]:
                         url = dict_urls_fraiches.get(num_bus)
                         if url and "http" in url:
-                            # On remplace la ligne proprement
-                            lignes[i] = f'            <a href="{url}" class="line-dot {classe_css}">{num_bus}</a>\n'
-                            modifie = True
-                            break # On a trouvé le bon bus pour cette ligne, on arrête de chercher pour cette ligne i
+                            nouvelle_ligne = f'            <a href="{url}" class="line-dot {classe_css}">{num_bus}</a>\n'
+                            
+                            # On ne modifie et ne passe à True QUE si la ligne change vraiment
+                            if lignes[i] != nouvelle_ligne:
+                                lignes[i] = nouvelle_ligne
+                                modifie = True
+                            break 
     
     if modifie:
         with open(chemin_complet, "w", encoding="utf-8") as f:
             f.writelines(lignes)
         print(f"💾 {nom_fichier} mis à jour avec succès.")
+    else:
+        print(f"✅ {nom_fichier} est déjà à jour (aucun changement).")
+
+
 def mettre_a_jour_fichier_accueil(nom_fichier, dict_urls_fraiches):
     chemin_complet = os.path.join(nom_fichier)
     
@@ -960,29 +961,28 @@ def mettre_a_jour_fichier_accueil(nom_fichier, dict_urls_fraiches):
 
     modifie2 = False
     for i in range(len(lignes)):
-        # On vérifie d'abord si c'est une ligne qui nous intéresse
         if 'class="line-dot' in lignes[i]:
-            
-            # On cherche quel bus de notre config correspond à cette ligne précise
             for num_bus, (fichier_cible, classe_css) in CONFIG_LIGNES.items():
                 if fichier_cible == nom_fichier:
-                    
-                    # CONDITION DOUBLE : La classe CSS ET le numéro du bus doivent correspondre
-                    # On cherche ">30</a>" par exemple
                     identifiant_unique = f">{num_bus}</a>"
                     
                     if classe_css in lignes[i] and identifiant_unique in lignes[i]:
                         url = dict_urls_fraiches.get(num_bus)
                         if url and "http" in url:
-                            # On remplace la ligne proprement
-                            lignes[i] = f'            <a href="{url}" class="line-dot {classe_css}">{num_bus}</a>\n'
-                            modifie2 = True
-                            break # On a trouvé le bon bus pour cette ligne, on arrête de chercher pour cette ligne i
+                            nouvelle_ligne = f'            <a href="{url}" class="line-dot {classe_css}">{num_bus}</a>\n'
+                            
+                            # On ne modifie et ne passe à True QUE si la ligne change vraiment
+                            if lignes[i] != nouvelle_ligne:
+                                lignes[i] = nouvelle_ligne
+                                modifie2 = True
+                            break 
     
     if modifie2:
         with open(chemin_complet, "w", encoding="utf-8") as f:
             f.writelines(lignes)
         print(f"💾 {nom_fichier} mis à jour avec succès.")
+    else:
+        print(f"✅ {nom_fichier} est déjà à jour (aucun changement).")
 if __name__ == "__main__":
     urls_extraites = {
         "20": recuperer_url_ligne_20(),
