@@ -212,3 +212,96 @@ a,
     list-style-position: inside; /* Centers the bullets better in your layout */
     text-align: left;   /* Optional: keeps the items aligned if you prefer */
 }
+
+/* ==========================================================================
+   STYLE DU WIDGET INFOS TRAFIC (MECATRAN) - MIS À JOUR
+   ========================================================================== */
+
+#view-mecatran-alerts {
+    background-color: #333 !important; /* Rappelle ton menu et tes boutons */
+    color: #ffffff !important;         /* Texte en blanc pour le contraste */
+    max-width: 600px;                  /* Évite que le bloc soit trop large */
+    margin: 20px auto;                 /* Centre le bloc sur la page */
+    padding: 20px;
+    text-align: center;                  /* Alignement à gauche */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Légère ombre portée */
+    font-family: Arial, sans-serif;
+
+    /* --- LES DEUX LIGNES CLÉS POUR LES ANGLES ARRONDIS --- */
+    border-radius: 15px !important;    /* Applique l'arrondi de 15px aux angles */
+    overflow: hidden !important;      /* TRÈS IMPORTANT : Coupe tout ce qui dépasse (comme les angles pointus des bandeaux internes) */
+}
+
+/* Si le widget contient des sous-blocs d'alertes individuels ou des boutons que tu veux aussi arrondir */
+#view-mecatran-alerts li,
+#view-mecatran-alerts div {
+    border-radius: 8px; /* Arrondit subtilement les éléments internes si nécessaire */
+}
+
+/* On garde le reste du style pour les liens jaunes */
+#view-mecatran-alerts h1, 
+#view-mecatran-alerts h2, 
+#view-mecatran-alerts h3, 
+#view-mecatran-alerts h4 {
+    color: #ffcc00 !important;         /* Ton jaune doré fétiche */
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+#view-mecatran-alerts a {
+    color: #ffcc00 !important;         /* Liens textuels en jaune */
+    text-decoration: none !important;  /* Supprime le soulignement */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+#view-mecatran-alerts a:hover {
+    color: #ffffff !important;         /* Devient blanc au survol */
+    text-decoration: underline !important;
+}
+
+#view-mecatran-alerts ul {
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#view-mecatran-alerts li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#view-mecatran-alerts li:last-child {
+    border-bottom: none;
+}
+/* ==========================================================================
+   FORCER LE CENTRAGE ET LA POLICE ARIAL SUR LES BADGES ET ICÔNES
+   ========================================================================== */
+
+/* 1. Force la police Arial sur TOUS les éléments internes sans exception (badges, sous-titres, etc.) */
+#view-mecatran-alerts,
+#view-mecatran-alerts * {
+    font-family: Arial, sans-serif !important;
+}
+
+/* 2. Force le centrage de tous les blocs internes, conteneurs et listes d'alertes */
+#view-mecatran-alerts div,
+#view-mecatran-alerts li,
+#view-mecatran-alerts p,
+#view-mecatran-alerts span {
+    text-align: center !important;
+    justify-content: center !important; /* Au cas où Mecatran utilise du Flexbox pour ses blocs */
+    float: none !important;             /* Annule un éventuel alignement forcé à gauche */
+}
+
+/* 3. Cibler spécifiquement les badges de lignes (comme VLS ou les numéros de bus) */
+#view-mecatran-alerts img,
+#view-mecatran-alerts svg,
+#view-mecatran-alerts [class*="badge"],
+#view-mecatran-alerts [class*="icon"],
+#view-mecatran-alerts [class*="line"] {
+    display: inline-block !important;   /* Permet au centrage text-align de fonctionner */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    float: none !important;
+}
