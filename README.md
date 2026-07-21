@@ -16,16 +16,32 @@ Le site étant rudimentaire, il est utilisable sur tout les navigateurs prenant 
 Aussi, si vous avez un forfait limité (les forfait pas cher 5-10Go), l'utilisation d'Optymo' Clock vous permettera d'économiser des précieux Mo de données, alors que les application type Maps ou Transit ne lésigneront pas sur la consommation de données.
 
 ## Lignes Disponibles
-Ligne 1 Valdoie &#8596; Résidences\
-Ligne 2 Ar./Bav./Cra. &#8596; Justice\
-Ligne 3 Valdoie &#8596; Gare TGV (WIP)\
-Ligne 3 Valdoie &#8596; Châtenois (Prochainement)\
-Ligne 4 Offemont &#8596; Pépinière/Froideval (Prochainement)\
-Ligne 5 Essert &#8596; Prés d'Aumont/Eloie (Prochainement)\
-Ligne 8 Liberté &#8596; Evette (Prochainement)\
-Etant donné la manière dont le site est crée, je ne peut pas implémenter la ligne 9, les lignes secondaires (20-26) et suburbaines (30-40, 90-93) de la mème manière que les lignes urbaines (les boutons redirigent vers les PDF des horaires, c'est rudimentaire mais c'est impossible de faire autrement)
+**Ligne 1** Valdoie &#8596; Résidences\
+**Ligne 2** Ar./Bav./Cra. &#8596; Justice\
+**Ligne 3** Valdoie &#8596; Gare TGV (WIP)\
+**Ligne 3** Valdoie &#8596; Châtenois (Prochainement)\
+**Ligne 4** Offemont &#8596; Pépinière/Froideval (Prochainement)\
+**Ligne 5** Essert &#8596; Prés d'Aumont/Eloie (Prochainement)\
+**Ligne 8** Liberté &#8596; Evette (Prochainement)\
 
+> [!NOTE]
+> Etant donné la manière dont le site est crée, je ne peut pas implémenter la ligne 9, les lignes secondaires (20-26) et suburbaines (30-40, 90-93) de la mème manière que les lignes urbaines (les boutons redirigent vers les PDF des horaires, c'est rudimentaire mais c'est impossible de faire autrement)
 
 # MENTIONS LEGALES
 Optymo est une marque déposée par la Régie des Transports du Territoire de Belfort (RTTB) depuis 2007, tout droits réservés.\
-Comme dit précedemment, je ne serai tenu reponsable du contenu affiché dans les iframes fournies par la RTTB
+Comme dit précedemment, je ne serai tenu reponsable du contenu affiché dans les iframes fournies par la RTTB\
+
+## Licence
+
+Ce projet est sous licence **GNU Affero General Public License v3.0 (AGPLv3)**.\
+Comme dit dans le fichier [LICENSE](LISENCE.MD), ce projet vous est distribué sans la moindre garantie.
+
+### Résumé rapide :
+
+| 🟢 Vos permissions | 🟡 Vos devoirs | 🔴 Vos interdictions |
+| :--- | :--- | :--- |
+| **Utiliser** le projet gratuitement (perso ou commercial) | **Conserver** le nom de l'auteur (Naxoméga) et la mention de licence | **Fermer le code** source en le rendant propriétaire |
+| **Modifier** et adapter le code source | **Ouvrir le code** de vos modifications sous licence AGPLv3 | **Relever la responsabilité** de l'auteur en cas de bug |
+| **Redistribuer** ou **héberger** l'application en ligne | **Rendre le code accessible** aux utilisateurs du site/service (lien web) | |
+
+> *Ce résumé est fourni à titre indicatif. En cas de doute juridique, seul le texte du fichier [LICENSE](LICENSE.MD) fait foi.*
