@@ -1,5 +1,5 @@
 > [!WARNING]
-> Ce projet n'est en AUCUN CAS affilié ou maintenu de quelconque manière que ca soit, à Optymo, la Régie des Transports du Territoire de Belfort (RTTB) ou le Syndicat Mixte des Transports en Commun (SMTC).
+> Ce projet n'est en AUCUN CAS affilié ou maintenu de quelconque manière que ca soit, à Optymo, la Régie des Transports du Territoire de Belfort (RTTB) ou le Syndicat Mixte des Transports en Commun (SMTC90).
 # Optymo' Clock
 Optymo' Clock est un projet visant à réunir un maximum de pages d'horaires en temps réel fournies par Optymo\
 Bien évidemment, Optymo' Clock est uniquement un moyen d'accès aux pages d'horaires, qui sont faites par Optymo\
@@ -22,7 +22,7 @@ Aussi, si vous avez un forfait limité (les forfait pas cher 5-10Go), l'utilisat
 **Ligne 3** Valdoie &#8596; Châtenois (Prochainement)\
 **Ligne 4** Offemont &#8596; Pépinière/Froideval (Prochainement)\
 **Ligne 5** Essert &#8596; Prés d'Aumont/Eloie (Prochainement)\
-**Ligne 8** Liberté &#8596; Evette (Prochainement)\
+**Ligne 8** Liberté &#8596; Evette (Prochainement)
 
 > [!NOTE]
 > Etant donné la manière dont le site est crée, je ne peut pas implémenter la ligne 9, les lignes secondaires (20-26) et suburbaines (30-40, 90-93) de la mème manière que les lignes urbaines (les boutons redirigent vers les PDF des horaires, c'est rudimentaire mais c'est impossible de faire autrement)
