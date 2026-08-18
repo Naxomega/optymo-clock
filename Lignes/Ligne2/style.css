@@ -42,6 +42,7 @@ body {
     align-items: center; /* Center all content horizontally */
     gap: 20px; /* Add space between elements */
     text-align: center; /* Center text inside the container */
+    color: white;
 }
 
 .link-container {
@@ -156,7 +157,7 @@ a,
     text-align: center;
     border-radius: 10px;
     background-color: var(--line-color, #e79129);
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease;
     font-size: 18px;
     box-sizing: border-box;
     outline: none;
@@ -164,11 +165,13 @@ a,
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border: solid rgba(255, 255, 255, 0.4) 1px;
 }
 
 .line-link:hover {
     background-color: #d17a1f;
     transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
 }
 
 .line-link span {
@@ -214,4 +217,13 @@ a,
     padding-left: 20px; /* Keeps the bullets indented */
     list-style-position: inside; /* Centers the bullets better in your layout */
     text-align: left;   /* Optional: keeps the items aligned if you prefer */
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #DDD;}
 }

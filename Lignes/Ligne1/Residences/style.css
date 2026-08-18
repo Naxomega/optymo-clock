@@ -42,6 +42,7 @@ body {
     align-items: center; /* Center all content horizontally */
     gap: 20px; /* Add space between elements */
     text-align: center; /* Center text inside the container */
+    color: black;
 }
 
 .link-container {
@@ -220,4 +221,13 @@ a,
     padding-left: 20px; /* Keeps the bullets indented */
     list-style-position: inside; /* Centers the bullets better in your layout */
     text-align: left;   /* Optional: keeps the items aligned if you prefer */
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #DDD;}
 }

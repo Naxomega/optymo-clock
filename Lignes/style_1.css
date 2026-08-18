@@ -42,6 +42,7 @@ body {
     align-items: center; /* Center all content horizontally */
     gap: 20px; /* Add space between elements */
     text-align: center; /* Center text inside the container */
+    color: white
 }
 
 .link-container {
@@ -111,17 +112,19 @@ a,
     padding: 10px 15px; /* Add some padding for better spacing */
     border-radius: 10px; /* Optional: Add rounded corners */
     background-color: var(--line-color, #d3414e); /* Use the line color or fallback */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+    transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease; /* Smooth hover effect */
     font-size: 18px; /* Adjust font size for readability on smaller screens */
     min-width: 120px; /* Ensure links have a consistent minimum width */
     max-width: 150px; /* Prevent links from becoming too wide */
     box-sizing: border-box; /* Include padding in width calculations */
     outline: none; /* Remove the default blue outline */
+    border: solid rgba(255, 255, 255, 0.4) 1px;
 }
 
 .line-link:hover {
     background-color: #b0303e; /* Slightly darker shade of rose for hover */
     transform: scale(1.05); /* Slightly enlarge the link on hover */
+    border: solid rgba(0, 0, 0, 0) 1px;
 }
 
 .line-link span {
@@ -132,3 +135,13 @@ a,
 .line-link span.notbold {
     font-weight: normal; /* Make the text not bold */
 }
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #DDD;}
+}
+

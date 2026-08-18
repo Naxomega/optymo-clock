@@ -42,6 +42,7 @@ body {
     align-items: center; /* Center all content horizontally */
     gap: 20px; /* Add space between elements */
     text-align: center; /* Center text inside the container */
+    color: white;
 }
 
 .link-container {
@@ -113,7 +114,7 @@ a,
     text-align: center;
     border-radius: 10px;
     background-color: var(--line-color, #d3414e);
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease;
     font-size: 18px;
     box-sizing: border-box;
     outline: none;
@@ -121,16 +122,19 @@ a,
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border: solid rgba(255, 255, 255, 0.4) 1px;
 }
 
 .line-link:hover {
     background-color: #b0303e;
     transform: scale(1.05);
+    border: solid rgba(0, 0, 0, 0) 1px;
 }
 
 .line-link span {
     display: inline-block; /* Ensure each word is inline */
     margin: 0 5px; /* Add spacing between words */
+    
 }
 
 .line-link span.notbold {
@@ -146,4 +150,13 @@ a,
         flex: 1 1 48%;   /* 2 boutons par ligne sur mobile */
         max-width: 100%;
     }
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000;
+    }
+    .header {
+        color: #DDD;
+    }
+    .lightmode{color: #DDD;}
 }
