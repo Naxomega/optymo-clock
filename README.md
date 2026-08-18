@@ -29,12 +29,12 @@ Aussi, si vous avez un forfait limité (les forfait pas cher 5-10Go), l'utilisat
 
 ## Lignes Disponibles
 
-**Ligne 1** Valdoie ↔ Résidences
-**Ligne 2** Ar./Bav./Cra. ↔ Justice
-**Ligne 3** Valdoie ↔ Gare TGV (WIP)
-**Ligne 3** Valdoie ↔ Châtenois (Prochainement)
-**Ligne 4** Offemont ↔ Pépinière/Froideval (Prochainement)
-**Ligne 5** Essert ↔ Prés d'Aumont/Eloie (Prochainement)
+**Ligne 1** Valdoie ↔ Résidences\
+**Ligne 2** Ar./Bav./Cra. ↔ Justice\
+**Ligne 3** Valdoie ↔ Gare TGV (WIP)\
+**Ligne 3** Valdoie ↔ Châtenois (Prochainement)\
+**Ligne 4** Offemont ↔ Pépinière/Froideval (Prochainement)\
+**Ligne 5** Essert ↔ Prés d'Aumont/Eloie (Prochainement)\
 **Ligne 8** Liberté ↔ Evette (Prochainement)
 
 > [!NOTE]
