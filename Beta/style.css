@@ -199,6 +199,9 @@ a,
 }
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #121212; /* la couleur sombre de ton choix */
+        background-color: #000; /* la couleur sombre de ton choix */
+    }
+    .header {
+        color: #DDD
     }
 }
