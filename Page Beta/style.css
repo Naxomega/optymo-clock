@@ -197,3 +197,8 @@ a,
     list-style-position: inside; /* Centers the bullets better in your layout */
     text-align: left;   /* Optional: keeps the items aligned if you prefer */
 }
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212; /* la couleur sombre de ton choix */
+    }
+}
