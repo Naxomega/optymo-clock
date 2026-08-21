@@ -32,7 +32,7 @@ Aussi, si vous avez un forfait limité (les forfait pas cher 5-10Go), l'utilisat
 **Ligne 1** Valdoie ↔ Résidences\
 **Ligne 2** Ar./Bav./Cra. ↔ Justice\
 **Ligne 3** Valdoie ↔ Gare TGV/Châtenois\
-**Ligne 4** Offemont ↔ Pépinière/Froideval (Prochainement)\
+**Ligne 4** Offemont ↔ Pépinière/Froideval (WIP)\
 **Ligne 5** Essert ↔ Prés d'Aumont/Eloie (Prochainement)\
 **Ligne 8** Liberté ↔ Evette (Prochainement)
 
