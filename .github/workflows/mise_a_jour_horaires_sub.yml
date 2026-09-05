@@ -31,6 +31,6 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add Lignes/*.html
-        git diff-index --quiet HEAD || git commit -m "Mise à jour auto des horaires PDF"
+        git add Lignes/*.html index.html
+        git diff-index --quiet --cached HEAD || git commit -m "Mise à jour auto des horaires PDF"
         git push
