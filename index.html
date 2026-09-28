@@ -43,10 +43,15 @@
         <h3 class="lightmode">Trajets</h3>
         <p class="lightmode">Prochainement...</p>
         <h3 class="lightmode">Vieux Navigateur ?</h3>
-        <a href="https://siv.optymo.fr/passage.php?ar=AAA01"><button>Cliquez ici, puis revenez sur cette page</button></a>
+        <a href="https://siv.optymo.fr/passage.php?ar=AAA01"><button onclick="redirection()">Cliquez ici, puis revenez sur cette page</button></a>
             <p></p><div id="view-mecatran-alerts"></div>
             <script src="https://pub.mecatran.com/products/widgets/widget-alert/belfort/main.js"></script>
         <a href="https://github.com/Naxomega/optymo-clock" class="line-link"><h3>Dépôt Github</h3></a>
         </div>
+<script>
+        function redirection() {
+            alert("Une fois la page chargée, utilisez la fonction retour de votre navigateur");
+        }
+    </script>
 </body>
 </html>
