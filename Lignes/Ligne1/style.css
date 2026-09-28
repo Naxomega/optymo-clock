@@ -52,6 +52,9 @@ body {
     gap: 12px;
     padding: 10px;
 }
+.small{
+    font-size: 15px
+}
 
 .top-bar a::after {
     content: '';
