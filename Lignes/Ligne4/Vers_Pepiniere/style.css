@@ -35,14 +35,14 @@ body {
 .content {
     margin-top: 20px;
     border-radius: 25px;
-    background-color: #570091; /* Warm rose for Line 1 */
+    background-color: #ab2eff; /* Warm rose for Line 1 */
     padding: 20px;
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack headings vertically */
     align-items: center; /* Center all content horizontally */
     gap: 20px; /* Add space between elements */
     text-align: center; /* Center text inside the container */
-    color: white;
+
 }
 
 .link-container {
@@ -165,7 +165,7 @@ a,
     text-align: center;
     border-radius: 10px;
     background-color: var(--line-color, #ab2eff);
-    transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease;
+    transition: background-color 0.3s, transform 0.2s;
     font-size: 18px;
     box-sizing: border-box;
     outline: none;
@@ -174,12 +174,14 @@ a,
     white-space: nowrap;
     text-overflow: ellipsis;
     border: solid rgba(255, 255, 255, 0.4) 1px;
+
 }
 
 .line-link:hover {
     background-color: #be5dff;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
+
 }
 
 .line-link span {
@@ -193,9 +195,6 @@ a,
 
 .notbold {
     font-weight: 400;
-}
-.small{
-    font-size: 15px
 }
 
 @media (max-width: 600px) {
