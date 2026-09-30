@@ -164,7 +164,7 @@ a,
     text-decoration: none;
     text-align: center;
     border-radius: 10px;
-    background-color: var(--line-color, #ab2eff);
+    background-color: var(--line-color, #be5dff);
     transition: background-color 0.3s ease, transform 0.2s ease, border 0.3s ease;
     font-size: 18px;
     box-sizing: border-box;
@@ -177,7 +177,7 @@ a,
 }
 
 .line-link:hover {
-    background-color: #be5dff;
+    background-color: #ab2eff;
     transform: scale(1.05);
     border: solid rgba(0, 0, 0, 0) 1px;
 }
