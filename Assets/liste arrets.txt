@@ -46,7 +46,7 @@ Elo = Eloie | 31
 Mmo = Rue des Soies | Prochains passages | Optymo
 Fro = Berger | Prochains passages | Optymo
 DRo = Denfert Rochereau | Prochains passages | Optymo
-Rep = République | 21/22, 23, 24, 32, 33, 34, 35, 39
+Rep = République | 21, 22, 23, 24, 32, 33, 34, 35, 39
 Hop = Donation Maurice Jardot | Prochains passages | Optymo
 Sup = Nallet | 20, 31, 90
 Paq = Paquis | Prochains passages | Optymo
@@ -137,6 +137,6 @@ ELU = Poincaré | Prochains passages | Optymo
 MaV = Marché Vosges | 90
 RtV = Rte de Vourvenans | Prochains passages | Optymo
 TGV = Gare TGV | 24, 25, 26, 35, 93
-Valdoie Blumberg | 20, 30, 31, 90
-Rue de Buc | 39
-Jean Jaurès | 90
+Aucun ID | Valdoie Blumberg | 20, 30, 31, 90
+Aucun ID | Rue de Buc | 39
+Aucun ID | Jean Jaurès | 90
